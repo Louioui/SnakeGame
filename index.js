@@ -1,27 +1,33 @@
-const gameBoard = document.querySelector("#gameBoard");
-const ctx = gameBoard.getContext("2d");
+const gameBoard = document.querySelector("#gameBoard");//canvas
+const ctx = gameBoard.getContext("2d");//canvas paint
+const gameWidth = gameBoard.width; 
+const gameHeight = gameBoard.height; 
+
 const scoreText = document.querySelector("#scoreText");
 const resetBtn = document.querySelector("#resetBtn");
-const gameWidth = gameBoard.width;
-const gameHeight = gameBoard.height;
-const boardBackground = "white";
-const snakeColor = "lightgreen";
-const snakeBorder = "black";
+
+const boardBackground = "black";
+const snakeColor = "lime";
+const snakeBorder = "white";
 const foodColor = "red";
-const unitSize = 25;
-let running = false;
-let xVelocity = unitSize;
-let yVelocity = 0;
+const unitSize = 25; 
+
+let running = false; //if game is running
+let xVelocity = unitSize; //how far we move on the x-axis
+let yVelocity = 0; //this means we are not moving up 
 let foodX;
 let foodY;
 let score = 0;
+
+/*object in an array
+each code block represents the body*/
 let snake = [
-    {x:unitSize * 4, y:0},
-    {x:unitSize * 3, y:0},
+    {x:unitSize * 4, y:0}, 
+    {x:unitSize * 3, y:0}, 
     {x:unitSize * 2, y:0},
-    {x:unitSize, y:0},
-    {x:0, y:0}
-];
+    {x:unitSize, y:0}, 
+    {x:0, y:0} 
+]; 
 
 window.addEventListener("keydown", changeDirection);
 resetBtn.addEventListener("click", resetGame);
@@ -33,7 +39,7 @@ function gameStart(){
     scoreText.textContent = score;
     createFood();
     drawFood();
-    nextTick();
+    nextTick(); //creates random food everytime the page refreshes
 };
 function nextTick(){
     if(running){
@@ -84,13 +90,15 @@ function moveSnake(){
 function drawSnake(){
     ctx.fillStyle = snakeColor;
     ctx.strokeStyle = snakeBorder;
+           //method(arrow function)
     snake.forEach(snakePart => {
         ctx.fillRect(snakePart.x, snakePart.y, unitSize, unitSize);
         ctx.strokeRect(snakePart.x, snakePart.y, unitSize, unitSize);
     })
 };
-function changeDirection(event){
-    const keyPressed = event.keyCode;
+function changeDirection(e){
+    const keyPressed = e.key;
+    //console.log(keyPressed)
     const LEFT = 37;
     const UP = 38;
     const RIGHT = 39;

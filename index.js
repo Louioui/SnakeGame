@@ -37,14 +37,14 @@ drawFood();
 
 function gameStart(){ 
     running = true;
-    scoreText.TextContent = score;
+    scoreText.textContent = score;
     createFood();
     drawFood()
     nextTick()
 };
 function  nextTick(){ 
     if(running){
-        setTimeOut(()=>{
+        setTimeout(()=>{
             clearBoard();
             drawFood();
             moveSnake();
@@ -57,26 +57,31 @@ function  nextTick(){
     }
 };
 function clearBoard(){ 
-    ctx.fillstyle = boardBackground;
-    ctx.fillRect(0,0, gameWidth, gameHeight)
+    ctx.fillStyle = boardBackground;
+    ctx.fillRect(0, 0, gameWidth, gameHeight)
  };
 function createFood(){ 
     
     function randomFood(min, max){
-        const randNum = Math.round(Math.random() * (max-min) + min / unitSize) * unitSize
+        const randNum = Math.round((Math.random() * (max - min) + min) / unitSize) * unitSize;
         return randNum
     }
     foodX = randomFood(0, gameWidth - unitSize);
     foodY = randomFood(0, gameWidth - unitSize);
-    console.log(foodX);
 };
 
 function drawFood(){ 
-    ctx.fillstyle = foodColor;
+    ctx.fillStyle = foodColor;
     ctx.fillRect(foodX, foodY, unitSize, unitSize)
 };
 function moveSnake(){ 
-  
+  const head = {x: snake[0].x + xVelocity,
+                y: snake[0].y + yVelocity};
+   snake.unshift(head);
+   if(snake[0].x == foodX && snake[0].y == foodY){
+    score += 1;
+    scoreText.textContent = score;
+    createFood();}
 };
 function drawSnake(){ 
     ctx.fillstyle = snakeColor;

@@ -12,7 +12,7 @@ const snakeBorder = "white";
 const foodColor = "red";
 const unitSize = 25; //the size of everything in our game
 
-let running = false; //if game is running
+let running = false; //if{} game is running
 let xVelocity = unitSize; //how far we move on the x-axis
 let yVelocity = 0;
 let foodX;

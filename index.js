@@ -1,5 +1,5 @@
-const gameBoard = document.querySelector("#gameBoard");
-const ctx = gameBoard.getContext("2d");
+var gameBoard = document.querySelector("#gameBoard");
+var ctx = gameBoard.getContext("2d");
 const scoreText= document.querySelector("#scoreText");
 const resetBtn= document.querySelector("#resetBtn");
 
@@ -32,8 +32,6 @@ window.addEventListener("keydown", changeDirection);
 resetBtn.addEventListener("click", resetGame);
 
 gameStart();
-createFood();
-drawFood();
 
 function gameStart(){ 
     running = true;
@@ -81,18 +79,43 @@ function moveSnake(){
    if(snake[0].x == foodX && snake[0].y == foodY){
     score += 1;
     scoreText.textContent = score;
-    createFood();}
+    createFood();
+   }else{
+        snake.pop();
+    }
 };
 function drawSnake(){ 
-    ctx.fillstyle = snakeColor;
-    ctx.strokestyle = snakeBorder;
+    ctx.fillStyle = snakeColor;
+    ctx.strokeStyle = snakeBorder;
     snake.forEach(snakePart => {
         ctx.fillRect(snakePart.x, snakePart.y, unitSize, unitSize);
         ctx.strokeRect(snakePart.x, snakePart.y, unitSize, unitSize);
 
     })
 };
-function changeDirection(){ };
+function changeDirection(event){ 
+    const keyPressed = event.keyCode;
+    const LEFT = 37;
+    const RIGHT= 39;
+    const DOWN = 40;
+
+    const goingUp = (yVelocity == -unitSize);
+    const goingDown = (yVelocity ==   unitSize);
+    const goingRight = (xVelocity ==  unitSize);
+    const goingLeft = (xVelocity == -unitSize)
+
+    switch (true){
+        case(keyPressed ==LEFT && !goingRight):
+        xVelocity = -unitSize;
+        yVelocity = 0;
+        break;
+        case(keyPressed ==LEFT && !goingRight):
+        xVelocity = -unitSize;
+        yVelocity = 0;
+        break;
+    }
+
+};
 function checkGameOver(){ };
 function displayGameOver(){ };
 function resetGame(){ };

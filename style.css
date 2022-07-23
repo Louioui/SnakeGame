@@ -1,16 +1,21 @@
 #gameContainer{
-    text-align: center;
+  text-align: center;
 }
 #gameBoard{
-    border: 3px solid;
+    border: 4px solid ;
+}
+.container{
+    display: flex;
+    justify-content: center;
 }
 #scoreText{
     font-size: 100px;
 }
 #resetBtn{
     font-size: 22px;
-    width: 100px;
-    height: 50px;
-    border: 4px solid;
-    counter-reset: pointer;
+    width: 53px;
+    height: max-content;
+    border: 2px solid;
+    cursor: pointer;  
+    margin: 100px 0px 0px 0px;
 }

@@ -1,8 +1,9 @@
 #gameContainer{
   text-align: center;
+  border: 2px solid black;
 }
 #gameBoard{
-    border: 4px solid ;
+    border: 4px solid;
 }
 .container{
     display: flex;
@@ -10,12 +11,14 @@
 }
 #scoreText{
     font-size: 100px;
+    text-align: center;
+    font-size: 80px;
 }
 #resetBtn{
     font-size: 22px;
     width: 53px;
     height: max-content;
     border: 2px solid;
-    cursor: pointer;  
-    margin: 100px 0px 0px 0px;
+    cursor: pointer;
+    margin: 10px 0px 0px 0px;
 }

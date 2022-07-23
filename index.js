@@ -5,16 +5,16 @@ const gameHeight = gameBoard.height;
 
 const scoreText = document.querySelector("#scoreText");
 const resetBtn = document.querySelector("#resetBtn");
-
+//inside the canvas
 const boardBackground = "black";
 const snakeColor = "lime";
 const snakeBorder = "white";
 const foodColor = "red";
-const unitSize = 25; 
+const unitSize = 25; //the size of everything in our game
 
 let running = false; //if game is running
 let xVelocity = unitSize; //how far we move on the x-axis
-let yVelocity = 0; //this means we are not moving up 
+let yVelocity = 0;
 let foodX;
 let foodY;
 let score = 0;
@@ -32,8 +32,6 @@ let snake = [
 window.addEventListener("keydown", changeDirection);
 resetBtn.addEventListener("click", resetGame);
 
-gameStart();
-
 function gameStart(){
     running= true;
     scoreText.textContent = score;
@@ -50,7 +48,7 @@ function nextTick(){
             drawSnake();
             checkGameOver();
             nextTick();
-        }, 75);
+        }, 50);//speed
     }
     else{
         displayGameOver();
@@ -96,8 +94,8 @@ function drawSnake(){
         ctx.strokeRect(snakePart.x, snakePart.y, unitSize, unitSize);
     })
 };
-function changeDirection(e){
-    const keyPressed = e.key;
+function changeDirection(event){
+    const keyPressed = event.keyCode;
     //console.log(keyPressed)
     const LEFT = 37;
     const UP = 38;
@@ -127,19 +125,34 @@ function changeDirection(e){
             yVelocity = unitSize;
             break;
     }
+    /*move() {
+    if(key("w") && this.vector.y - this.speed - this.radius > 0) {
+      this.vector.y -= this.speed
+    }
+    if(key("s") && this.vector.y + this.speed + this.radius < height) {
+      this.vector.y += this.speed
+    }
+    if(key("a") && this.vector.x - this.speed - this.radius > 0) {
+      this.vector.x -= this.speed
+    }
+    if(key("d") && this.vector.x + this.speed + this.radius < width) {
+      this.vector.x += this.speed
+    }
+  }*/
+
 };
 function checkGameOver(){
     switch(true){
         case (snake[0].x < 0):
             running = false;
             break;
-        case (snake[0].x >= gameWidth):
+        case (snake[0].x >= gameWidth)://ends game
             running = false;
             break;
         case (snake[0].y < 0):
             running = false;
             break;
-        case (snake[0].y >= gameHeight):
+        case (snake[0].y >= gameHeight)://ends game
                 running = false;
                 break;
     }
@@ -169,3 +182,4 @@ function resetGame(){
     ];
     gameStart();
 };
+gameStart();

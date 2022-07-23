@@ -3,19 +3,20 @@ const ctx = gameBoard.getContext("2d");
 const scoreText= document.querySelector("#scoreText");
 const resetBtn= document.querySelector("#resetBtn");
 
-const gameWidth= gameBoard.Width;
+const gameWidth= gameBoard.width;
 const gameHeight = gameBoard.height;
 const boardBackground= "white";
-const snakeColor = "dakrgreen";
+const snakeColor = "darkgreen";
+const snakeBorder= "black";
 const foodColor = "red";
 const unitSize = 25;
 
-let running = false;
 let xVelocity = unitSize;
 let yVelocity = 0;
 let foodX;
 let foodY;
 let score = 0;
+let running = false;
 
 
 let snake = [
@@ -62,11 +63,12 @@ function clearBoard(){
 function createFood(){ 
     
     function randomFood(min, max){
-        const randNum = Math.round(Math.random()* (max-min) + min / unitSize) * unitSize
+        const randNum = Math.round(Math.random() * (max-min) + min / unitSize) * unitSize
         return randNum
     }
     foodX = randomFood(0, gameWidth - unitSize);
     foodY = randomFood(0, gameWidth - unitSize);
+    console.log(foodX);
 };
 
 function drawFood(){ 
